@@ -8,12 +8,12 @@ interface FinalizeRequest {
 }
 
 interface ReconnectRequest {
-  username: string;
+  playerId: string;
   matchId: string;
 }
 
 interface CheckRequest {
-  username: string;
+  playerId: string;
 }
 
 // Explicitly finalize a match (called by Godot server or clients)
@@ -36,16 +36,16 @@ router.get("/:matchId", (req: Request<{ matchId: string }>, res: Response) => {
 
 // Reconnect route — player checks if their match is still alive
 router.post("/reconnect", (req: Request<never, never, ReconnectRequest>, res: Response) => {
-  const { username, matchId } = req.body;
-  if (!username || !matchId)
-    return res.status(400).json({ error: "Missing username or matchId" });
+  const { playerId, matchId } = req.body;
+  if (!playerId || !matchId)
+    return res.status(400).json({ error: "Missing playerId or matchId" });
 
   const match = getMatch(matchId);
   if (!match)
     return res.status(404).json({ error: "Match not found or expired" });
 
   // Verify player belongs to this match
-  if (!match.players.includes(username))
+  if (!match.players.some(p => p.playerId === playerId))
     return res.status(403).json({ error: "Player not part of this match" });
 
   res.json({
@@ -59,10 +59,10 @@ router.post("/reconnect", (req: Request<never, never, ReconnectRequest>, res: Re
 
 // Check whether a player is currently in any active match
 router.post("/check", (req: Request<never, never, CheckRequest>, res: Response) => {
-  const { username } = req.body;
-  if (!username) return res.status(400).json({ error: "Missing username" });
+  const { playerId } = req.body;
+  if (!playerId) return res.status(400).json({ error: "Missing playerId" });
 
-  const found = findMatchByPlayer(username);
+  const found = findMatchByPlayer(playerId);
   if (!found) return res.json({ status: "none" });
 
   const { matchId, match } = found;

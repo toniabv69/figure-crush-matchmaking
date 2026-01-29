@@ -1,7 +1,12 @@
 import { ChildProcess } from "child_process";
 
+interface Player {
+  playerId: string;
+  username: string;
+}
+
 interface Match {
-  players: string[];
+  players: Player[];
   port: number;
   process?: ChildProcess;
   createdAt: number;
@@ -11,7 +16,7 @@ const matches = new Map<string, Match>();
 
 export function createMatch(
   matchId: string,
-  players: string[],
+  players: Player[],
   port: number,
   process: ChildProcess
 ): void {
@@ -39,9 +44,9 @@ export function getMatch(matchId: string): Match | undefined {
   return matches.get(matchId);
 }
 
-export function findMatchByPlayer(username: string): { matchId: string; match: Match } | null {
+export function findMatchByPlayer(playerId: string): { matchId: string; match: Match } | null {
   for (const [id, match] of matches.entries()) {
-    if (Array.isArray(match.players) && match.players.includes(username)) {
+    if (Array.isArray(match.players) && match.players.some(p => p.playerId === playerId)) {
       return { matchId: id, match };
     }
   }
