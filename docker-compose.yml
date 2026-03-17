@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   matchmaker:
-    build: .
+    image: ${DOCKER_USERNAME}/figure-crush-matchmaking:latest
     ports:
       - "3000:3000"
       - "7000-7100:7000-7100"
