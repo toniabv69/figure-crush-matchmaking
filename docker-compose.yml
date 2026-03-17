@@ -12,3 +12,4 @@ services:
     environment:
       - NODE_ENV=development
     restart: unless-stopped
+    platform: linux/x86_64
