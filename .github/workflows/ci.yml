@@ -40,6 +40,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+            cd /home/${{ secrets.EC2_USER }}/figure-crush-matchmaking
             docker pull $DOCKER_USERNAME/figure-crush-matchmaking:latest
             docker-compose down
             docker-compose up -d
