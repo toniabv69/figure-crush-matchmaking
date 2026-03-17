@@ -2,6 +2,8 @@ import { spawn, ChildProcess } from "child_process";
 import { releasePort } from "./portManager.js";
 import { GAME_BINARY_PATH } from "./gameConfig.js";
 
+// This is a comment.
+
 interface MatchPlayer {
   playerId: string;
   username: string;
