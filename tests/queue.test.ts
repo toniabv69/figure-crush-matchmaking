@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { enqueuePlayer, findBestMatch, removePlayer, resetQueue } from '../src/queue.js';
 
@@ -14,7 +13,7 @@ describe('queue', () => {
     const match = findBestMatch();
     expect(match).not.toBeNull();
     expect(match).toHaveLength(2);
-    expect(match.map(p => p.username).sort()).toEqual(['alice', 'bob']);
+    expect(match!.map(p => p.username).sort()).toEqual(['alice', 'bob']);
 
     // The queue should now be empty
     expect(findBestMatch()).toBeNull();

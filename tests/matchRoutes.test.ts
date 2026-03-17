@@ -54,7 +54,7 @@ describe('match routes', () => {
 
   it('GET /match/:matchId - not found', async () => {
     const mockGet = vi.mocked(getMatch);
-    mockGet.mockReturnValue(null);
+    mockGet.mockReturnValue(undefined);
 
     const res = await request(app)
       .get('/match/match1')
@@ -93,7 +93,7 @@ describe('match routes', () => {
 
   it('POST /match/reconnect - match not found', async () => {
     const mockGet = vi.mocked(getMatch);
-    mockGet.mockReturnValue(null);
+    mockGet.mockReturnValue(undefined);
 
     const res = await request(app)
       .post('/match/reconnect')

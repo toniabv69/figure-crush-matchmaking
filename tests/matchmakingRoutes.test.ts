@@ -24,7 +24,7 @@ describe('matchmaking routes', () => {
   it('POST /matchmaking/join - match found', async () => {
     const mockAdd = vi.mocked(addPlayerToQueue);
     const mockTry = vi.mocked(tryMatchmake);
-    const mockMatch = { id: 'match1', port: 7000, players: [], createdAt: Date.now() };
+    const mockMatch = { matchId: 'match1', port: 7000, players: [], createdAt: Date.now() };
     mockTry.mockResolvedValue(mockMatch);
 
     const res = await request(app)
