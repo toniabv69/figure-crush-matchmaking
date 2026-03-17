@@ -17,6 +17,16 @@ interface MatchResult {
 
 let waitingPlayers: QueuedPlayer[] = [];
 
+// Test helpers
+export function resetQueue(): void {
+  waitingPlayers = [];
+}
+
+export function getQueueLength(): number {
+  return waitingPlayers.length;
+}
+
+
 export function addPlayerToQueue(playerId: string, username: string, rating: number): void {
   // Remove any existing player with the same playerId
   const existingIndex = waitingPlayers.findIndex(p => p.playerId === playerId);

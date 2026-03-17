@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import matchmakingRoutes from "./routes/matchmaking.js";
 import matchRoutes from "./routes/match.js";
 
-const app = express();
+export const app = express();
 app.use(bodyParser.json());
 
 app.use("/matchmaking", matchmakingRoutes);

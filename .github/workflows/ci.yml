@@ -20,6 +20,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run unit tests
+        run: npm test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: false
+
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/figure-crush-matchmaking:latest .
 

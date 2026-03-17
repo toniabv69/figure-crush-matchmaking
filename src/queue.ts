@@ -14,6 +14,14 @@ export function enqueuePlayer(player: Player): void {
   });
 }
 
+export function resetQueue(): void {
+  waitingPlayers.length = 0;
+}
+
+export function getQueueLength(): number {
+  return waitingPlayers.length;
+}
+
 // Remove player by username
 export function removePlayer(username: string): void {
   const index = waitingPlayers.findIndex(p => p.username === username);
