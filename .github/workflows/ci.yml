@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -41,6 +41,7 @@ jobs:
           script: |
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
             cd /home/${{ secrets.EC2_USER }}/figure-crush-matchmaking
-            docker pull $DOCKER_USERNAME/figure-crush-matchmaking:latest
-            docker-compose down
-            docker-compose up -d
+            git pull origin main || true
+            sudo docker pull $DOCKER_USERNAME/figure-crush-matchmaking:latest
+            sudo docker-compose down || true
+            sudo docker-compose up -d
