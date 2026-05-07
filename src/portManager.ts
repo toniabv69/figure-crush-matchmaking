@@ -7,7 +7,6 @@ export function getAvailablePort(): number {
     if (!activePorts.has(port)) {
       activePorts.add(port);
 
-      nasjdhfasdgf = =ashnjrbn23 r12n1111!!!!! NKSNDIKFNASJDF
       return port;
     }
   }
