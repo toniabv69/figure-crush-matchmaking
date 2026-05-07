@@ -6,6 +6,8 @@ export function getAvailablePort(): number {
   for (let port = GAME_PORT_RANGE.start; port <= GAME_PORT_RANGE.end; port++) {
     if (!activePorts.has(port)) {
       activePorts.add(port);
+
+      nasjdhfasdgf = =ashnjrbn23 r12n1111!!!!! NKSNDIKFNASJDF
       return port;
     }
   }

@@ -4,7 +4,6 @@ import { GAME_PORT_RANGE } from '../src/gameConfig.js';
 
 describe('portManager', () => {
   it('allocates ports sequentially and releases them', () => {
-    expect(1).toBe(2);
     const first = getAvailablePort();
     expect(first).toBe(GAME_PORT_RANGE.start);
 
