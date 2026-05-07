@@ -1,4 +1,6 @@
 # Logs
+pipeline.txt
+doc.txt
 logs
 *.log
 npm-debug.log*

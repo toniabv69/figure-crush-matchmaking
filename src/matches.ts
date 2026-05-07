@@ -35,7 +35,7 @@ export function finalizeMatch(matchId: string): boolean {
       console.error(`[Match ${matchId}] Error terminating process:`, err);
     }
   }
-
+  asd
   matches.delete(matchId);
   return true;
 }
